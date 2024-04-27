@@ -1,28 +1,32 @@
-# Name of our action
-name: "Chromatic"
-# The event that will trigger the action
+name: Chromatic
+
 on: push
 
-# What the action will do
 jobs:
-  test:
-    # The operating system it will run on
-    runs-on: ubuntu-latest
-    # The list of steps that the action will go through
+  chromatic-deployment:
+    runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
         with:
-          #👇 Fetches all history so Chromatic can compare against previous builds
           fetch-depth: 0
-      - uses: actions/setup-node@v3
+      - name: Setup Node
+        uses: actions/setup-node@v2
         with:
-          #👇 Sets the version of Node.js to use
-          node-version: 21
-      - run: yarn
-        #👇 Adds Chromatic as a step in the workflow
-      - uses: chromaui/action@v1
-        # Options required for Chromatic's GitHub Action
+          node-version: "18.12.0"
+      - name: Get yarn cache
+        id: yarn-cache
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Cache dependencies
+        uses: actions/cache@v2
         with:
-          #👇 Chromatic projectToken, see https://storybook.js.org/tutorials/design-systems-for-developers/react/en/review/ to obtain it
-          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - run: yarn install --frozen-lockfile
+      - name: Publish to Chromatic
+        uses: chromaui/action@v1
+        with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
