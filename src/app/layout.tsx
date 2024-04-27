@@ -13,8 +13,6 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { SearchBar } from "../components/search-bar";
 
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
-
 export default function RootLayout({
   children,
 }: {
@@ -41,10 +39,8 @@ export default function RootLayout({
       >
         <Box
           sx={{
-            height: "100%",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
+            height: "100vh",
+	    position:"relative"
           }}
         >
           <Box>
@@ -107,17 +103,20 @@ export default function RootLayout({
                       open={Boolean(anchorElUser)}
                       onClose={handleCloseUserMenu}
                     >
-                      {settings.map((setting) => (
-                        <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                          <Typography textAlign="center">{setting}</Typography>
+                        <MenuItem onClick={handleCloseUserMenu}>
+                          <Typography textAlign="center" ><a href="/user" style={{textDecoration: "none", color:"black"}}>Profile</a></Typography>
                         </MenuItem>
-                      ))}
+			<MenuItem onClick={handleCloseUserMenu}>
+                          <Typography textAlign="center">Logout</Typography>
+                        </MenuItem>
                     </Menu>
                   </Box>
                 </Toolbar>
               </Container>
             </AppBar>
-            {children}
+	    <Box sx={{padding:"48px 24px 64px"}}>
+              {children}
+	    </Box>
           </Box>
           <Box
             sx={{
@@ -125,8 +124,11 @@ export default function RootLayout({
               display: "flex",
               alignItems: "center",
               minHeight: "60px",
+	      width:"100%",
               backgroundColor: "#1876d2",
               color: "white",
+	      position:"absolute",
+	      bottom:"0"
             }}
           >
             <Typography variant="caption">©2024 cat-katsushika</Typography>
