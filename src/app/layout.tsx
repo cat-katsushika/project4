@@ -40,7 +40,9 @@ export default function RootLayout({
         <Box
           sx={{
             height: "100vh",
-	    position:"relative"
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
           }}
         >
           <Box>
@@ -103,32 +105,44 @@ export default function RootLayout({
                       open={Boolean(anchorElUser)}
                       onClose={handleCloseUserMenu}
                     >
-                        <MenuItem onClick={handleCloseUserMenu}>
-                          <Typography textAlign="center" ><a href="/user" style={{textDecoration: "none", color:"black"}}>Profile</a></Typography>
-                        </MenuItem>
-			<MenuItem onClick={handleCloseUserMenu}>
-                          <Typography textAlign="center">Logout</Typography>
-                        </MenuItem>
+                      <MenuItem onClick={handleCloseUserMenu}>
+                        <Typography textAlign="center">
+                          <a
+                            href="/user"
+                            style={{ textDecoration: "none", color: "black" }}
+                          >
+                            Profile
+                          </a>
+                        </Typography>
+                      </MenuItem>
+                      <MenuItem onClick={handleCloseUserMenu}>
+                        <Typography textAlign="center">Logout</Typography>
+                      </MenuItem>
                     </Menu>
                   </Box>
                 </Toolbar>
               </Container>
             </AppBar>
-	    <Box sx={{padding:"48px 24px 64px"}}>
+            <Box
+              sx={{
+                padding: "48px 24px 64px",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
               {children}
-	    </Box>
+            </Box>
           </Box>
           <Box
+            component="footer"
             sx={{
               justifyContent: "center",
               display: "flex",
               alignItems: "center",
               minHeight: "60px",
-	      width:"100%",
+              width: "100%",
               backgroundColor: "#1876d2",
               color: "white",
-	      position:"absolute",
-	      bottom:"0"
             }}
           >
             <Typography variant="caption">©2024 cat-katsushika</Typography>
