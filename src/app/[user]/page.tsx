@@ -1,7 +1,7 @@
 "use client";
 
 import type { NextPage } from "next";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import { Button, Typography, Grid } from "@mui/material";
@@ -20,6 +20,23 @@ const Page: NextPage = () => {
     { title: "記事タイトル9", publish_date: "2024-04-23", author: "著者I" },
     { title: "記事タイトル10", publish_date: "2024-04-22", author: "著者J" },
   ]);
+  // ページがマウントされたときにデータをfetchする
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        //const response = await axios.get(`API_ENDPOINT`);
+        //setSearchResults(response.data || []); // レスポンスがnullの場合は空の配列を設定する
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+    // cleanup
+    return () => {
+      // 何かしらのクリーンアップ処理があればここに記述する
+    };
+  }, []);
+
   return (
     <Box>
       <Box sx={{ display: "flex", alignItems: "center", gap: "24px" }}>
