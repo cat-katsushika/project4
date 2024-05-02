@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import NextTopLoader from "nextjs-toploader";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -38,6 +39,7 @@ export default function RootLayout({
           height: "100%",
         }}
       >
+        <NextTopLoader showSpinner={false} />
         <Box
           sx={{
             height: "100vh",
