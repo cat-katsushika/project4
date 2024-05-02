@@ -11,7 +11,7 @@ const Page: NextPage = () => {
         >
           Trending
         </Typography>
-        <Grid container spacing={2} sx={{ "&.MuiGrid-root": { margin: 0 } }}>
+        <Grid container spacing={2}>
           {[...Array(10)].map(
             (
               _,

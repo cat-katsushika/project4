@@ -1,6 +1,6 @@
 "use client";
 
-import * as React from "react";
+import React, { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -18,6 +18,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const [searchTerm, setSearchTerm] = useState("");
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
@@ -81,7 +82,10 @@ export default function RootLayout({
                     >
                       LOGO
                     </Typography>
-                    <SearchBar />
+                    <SearchBar
+                      searchTerm={searchTerm}
+                      setSearchTerm={setSearchTerm}
+                    />
                   </Box>
                   <Box sx={{ flexGrow: 0 }}>
                     <Tooltip title="">
