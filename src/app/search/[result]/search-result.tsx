@@ -2,8 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Article } from "../../../components/article";
-import { Grid, Typography } from "@mui/material";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { Box, Grid, Typography } from "@mui/material";
 
 interface SearchResultListProps {
   query: string;
@@ -26,22 +26,15 @@ export const SearchResultList: React.FC<SearchResultListProps> = ({
     { title: "記事タイトル9", publish_date: "2024-04-23", author: "著者I" },
     { title: "記事タイトル10", publish_date: "2024-04-22", author: "著者J" },
   ]);
-  // エラーを管理する状態
-  const [error, setError] = useState<string | null>(null);
-  // ローディング中を管理する状態
-  const [loading, setLoading] = useState<boolean>(true);
 
   // ページがマウントされたときにデータをfetchする
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setLoading(true);
         //const response = await axios.get(`API_ENDPOINT?q=${query}`);
         //setSearchResults(response.data || []); // レスポンスがnullの場合は空の配列を設定する
-        setLoading(false);
       } catch (error) {
-        setError("データを取得できませんでした。");
-        setLoading(false);
+        console.log(error);
       }
     };
     fetchData();
@@ -50,14 +43,6 @@ export const SearchResultList: React.FC<SearchResultListProps> = ({
       // 何かしらのクリーンアップ処理があればここに記述する
     };
   }, [query]);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>{error}</div>;
-  }
 
   return (
     <div>
@@ -77,7 +62,52 @@ export const SearchResultList: React.FC<SearchResultListProps> = ({
             key={index}
             sx={{ display: "flex", justifyContent: "center" }}
           >
-            <Article />
+            <Box
+              component="a"
+              href=""
+              sx={{
+                maxWidth: "250px",
+                textDecoration: "none",
+                color: "black",
+                maxHeight: "140px",
+                backgroundColor: "#baddff",
+                display: "flex",
+                flexDirection: "column",
+                borderRadius: "10px",
+                padding: "5px 10px",
+                cursor: "pointer",
+                "&.MuiBox-root": { padding: "16px" },
+              }}
+            >
+              <Typography
+                sx={{
+                  fontSize: "20px",
+                  fontWeight: "700",
+                  overflow: "hidden",
+                  display: "-webkit-box",
+                  WebkitLineClamp: 3,
+                  WebkitBoxOrient: "vertical",
+                }}
+              >
+                AnthropicAI Tool で Retrieval-Augmented Generation
+                を実装してみた AnthropicAI Tool で Retrieval-Augmented
+                Generation を実装してみた
+              </Typography>
+              <Box
+                sx={{
+                  marginTop: "12px",
+                  color: "#65717b",
+                  display: "flex",
+                  gap: "5px",
+                }}
+              >
+                <Typography sx={{ fontSize: "14px" }}>2023/05/17</Typography>
+                <Box sx={{ display: "flex", alignItems: "center" }}>
+                  <FavoriteBorderIcon sx={{ fontSize: "14px" }} />
+                  <Typography sx={{ fontSize: "14px" }}>12</Typography>
+                </Box>
+              </Box>
+            </Box>
           </Grid>
         ))}
       </Grid>
