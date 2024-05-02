@@ -6,8 +6,12 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 export const Article = () => {
   return (
     <Box
+      component="a"
+      href=""
       sx={{
         maxWidth: "250px",
+        textDecoration: "none",
+        color: "black",
         maxHeight: "140px",
         backgroundColor: "#baddff",
         display: "flex",
