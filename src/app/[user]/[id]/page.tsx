@@ -37,6 +37,60 @@ const Page: NextPage = () => {
             2023/05/17に更新
           </Typography>
         </Box>
+        <Box sx={{ display: "flex", gap: "16px" }}>
+          <Box sx={{ display: "flex", flexDirection: "column" }}>
+            <Typography sx={{ color: "black", fontWeight: "700" }}>
+              100
+              <span
+                style={{
+                  color: "#65717B",
+                  fontWeight: "400",
+                  marginLeft: "4px",
+                }}
+              >
+                Views
+              </span>
+            </Typography>
+            <Typography sx={{ color: "black", fontWeight: "700" }}>
+              100
+              <span
+                style={{
+                  color: "#65717B",
+                  fontWeight: "400",
+                  marginLeft: "4px",
+                }}
+              >
+                Total Views
+              </span>
+            </Typography>
+          </Box>
+          <Box sx={{ display: "flex", flexDirection: "column" }}>
+            <Typography sx={{ color: "black", fontWeight: "700" }}>
+              100
+              <span
+                style={{
+                  color: "#65717B",
+                  fontWeight: "400",
+                  marginLeft: "4px",
+                }}
+              >
+                Likes
+              </span>
+            </Typography>
+            <Typography sx={{ color: "black", fontWeight: "700" }}>
+              100
+              <span
+                style={{
+                  color: "#65717B",
+                  fontWeight: "400",
+                  marginLeft: "4px",
+                }}
+              >
+                Total Likes
+              </span>
+            </Typography>
+          </Box>
+        </Box>
       </Box>
       <Box sx={{ backgroundColor: "#edf2f7", padding: "25px" }}>
         Pythonの標準ライブラリでできる並列実行を、あらためて総当たりで速度比較しよう
