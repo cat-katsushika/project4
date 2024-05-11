@@ -59,6 +59,8 @@ export const SearchResultList: React.FC<SearchResultListProps> = ({
             xs={12} // 1列表示
             sm={6} // 2列表示
             md={4} // 3列表示
+            lg={3} // 4列表示
+            xl={2} // 6列表示
             key={index}
             sx={{ display: "flex", justifyContent: "center" }}
           >

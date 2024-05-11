@@ -37,7 +37,7 @@ const Page: NextPage = () => {
   }, []);
   return (
     <>
-      <Box sx={{ maxWidth: "960px", padding: "0 24px" }}>
+      <Box sx={{ padding: "0 24px" }}>
         <Typography
           sx={{ fontSize: "32px", fontWeight: "700", marginBottom: "32px" }}
         >
@@ -51,12 +51,14 @@ const Page: NextPage = () => {
               xs={12} // 1列表示
               sm={6} // 2列表示
               md={4} // 3列表示
+              lg={3} // 4列表示
+              xl={2} // 6列表示
               key={index}
               sx={{ display: "flex", justifyContent: "center" }}
             >
               <Box
                 component="a"
-                href=""
+                href="/user/id"
                 sx={{
                   maxWidth: "250px",
                   textDecoration: "none",

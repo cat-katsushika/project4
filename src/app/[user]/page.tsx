@@ -38,7 +38,13 @@ const Page: NextPage = () => {
   }, []);
 
   return (
-    <Box>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
       <Box sx={{ display: "flex", alignItems: "center", gap: "24px" }}>
         <Avatar alt="icon" src="" sx={{ width: 85, height: 85 }} />
         <Box sx={{ display: "flex", flexDirection: "column", gap: "12px" }}>
@@ -112,12 +118,14 @@ const Page: NextPage = () => {
               xs={12} // 1列表示
               sm={6} // 2列表示
               md={4} // 3列表示
+              lg={3} // 4列表示
+              xl={2} // 6列表示
               key={index}
               sx={{ display: "flex", justifyContent: "center" }}
             >
               <Box
                 component="a"
-                href=""
+                href="/user/id"
                 sx={{
                   maxWidth: "250px",
                   textDecoration: "none",

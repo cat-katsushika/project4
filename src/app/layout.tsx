@@ -111,15 +111,13 @@ export default function RootLayout({
                       open={Boolean(anchorElUser)}
                       onClose={handleCloseUserMenu}
                     >
-                      <MenuItem onClick={handleCloseUserMenu}>
-                        <Typography textAlign="center">
-                          <a
-                            href="/user"
-                            style={{ textDecoration: "none", color: "black" }}
-                          >
-                            Profile
-                          </a>
-                        </Typography>
+                      <MenuItem
+                        onClick={handleCloseUserMenu}
+                        component="a"
+                        href="/user"
+                        sx={{ color: "black" }}
+                      >
+                        <Typography textAlign="center">Profile</Typography>
                       </MenuItem>
                       <MenuItem onClick={handleCloseUserMenu}>
                         <Typography textAlign="center">Logout</Typography>

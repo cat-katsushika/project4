@@ -11,7 +11,7 @@ interface PageProps {
 const ArtSearchPage = async ({ searchParams }: PageProps) => {
   const query = searchParams.q ?? "";
   return (
-    <Box sx={{ maxWidth: "960px", padding: "0 24px" }}>
+    <Box sx={{ padding: "0 24px" }}>
       {query !== "" ? (
         <SearchResultList query={query} />
       ) : (
