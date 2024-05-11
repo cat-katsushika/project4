@@ -13,6 +13,7 @@ import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { SearchBar } from "../components/search-bar";
+import Button from "@mui/material/Button";
 
 export default function RootLayout({
   children,
@@ -20,6 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const [searchTerm, setSearchTerm] = useState("");
+  const [isLogin, setIsLogin] = useState(true);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
@@ -89,41 +91,61 @@ export default function RootLayout({
                       setSearchTerm={setSearchTerm}
                     />
                   </Box>
-                  <Box sx={{ flexGrow: 0 }}>
-                    <Tooltip title="">
-                      <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                        <Avatar alt="icon" src="" />
-                      </IconButton>
-                    </Tooltip>
-                    <Menu
-                      sx={{ mt: "45px" }}
-                      id="menu-appbar"
-                      anchorEl={anchorElUser}
-                      anchorOrigin={{
-                        vertical: "top",
-                        horizontal: "right",
-                      }}
-                      keepMounted
-                      transformOrigin={{
-                        vertical: "top",
-                        horizontal: "right",
-                      }}
-                      open={Boolean(anchorElUser)}
-                      onClose={handleCloseUserMenu}
-                    >
-                      <MenuItem
-                        onClick={handleCloseUserMenu}
-                        component="a"
-                        href="/user"
-                        sx={{ color: "black" }}
+                  {isLogin ? (
+                    <Box sx={{ flexGrow: 0 }}>
+                      <Tooltip title="">
+                        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                          <Avatar alt="icon" src="" />
+                        </IconButton>
+                      </Tooltip>
+
+                      <Menu
+                        sx={{ mt: "45px" }}
+                        id="menu-appbar"
+                        anchorEl={anchorElUser}
+                        anchorOrigin={{
+                          vertical: "top",
+                          horizontal: "right",
+                        }}
+                        keepMounted
+                        transformOrigin={{
+                          vertical: "top",
+                          horizontal: "right",
+                        }}
+                        open={Boolean(anchorElUser)}
+                        onClose={handleCloseUserMenu}
                       >
-                        <Typography textAlign="center">Profile</Typography>
-                      </MenuItem>
-                      <MenuItem onClick={handleCloseUserMenu}>
-                        <Typography textAlign="center">Logout</Typography>
-                      </MenuItem>
-                    </Menu>
-                  </Box>
+                        <MenuItem
+                          onClick={handleCloseUserMenu}
+                          component="a"
+                          href="/user"
+                          sx={{ color: "black" }}
+                        >
+                          <Typography textAlign="center">Profile</Typography>
+                        </MenuItem>
+                        <MenuItem onClick={handleCloseUserMenu}>
+                          <Typography textAlign="center">
+                            New Article
+                          </Typography>
+                        </MenuItem>
+                        <MenuItem onClick={handleCloseUserMenu}>
+                          <Typography textAlign="center">Logout</Typography>
+                        </MenuItem>
+                      </Menu>
+                    </Box>
+                  ) : (
+                    <Box sx={{ flexGrow: 0 }}>
+                      <Button
+                        sx={{
+                          border: "1px solid white",
+                          color: "white",
+                          borderRadius: "10px",
+                        }}
+                      >
+                        ログイン
+                      </Button>
+                    </Box>
+                  )}
                 </Toolbar>
               </Container>
             </AppBar>
