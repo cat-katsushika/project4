@@ -1,19 +1,19 @@
 "use client";
 
-import React, { useState } from "react";
-import NextTopLoader from "nextjs-toploader";
 import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
-import { SearchBar } from "../components/search-bar";
+import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import IconButton from "@mui/material/IconButton";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import Toolbar from "@mui/material/Toolbar";
+import Tooltip from "@mui/material/Tooltip";
+import Typography from "@mui/material/Typography";
+import NextTopLoader from "nextjs-toploader";
+import React, { useState } from "react";
+import { SearchBar } from "../components/search-bar";
 
 export default function RootLayout({
   children,
@@ -33,8 +33,20 @@ export default function RootLayout({
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const handleLogoutMenu = () => {
+    setAnchorElUser(null);
+    setIsLogin(false);
+  };
+
+  const handleLoginMenu = () => {
+    setAnchorElUser(null);
+    setIsLogin(true);
+  };
+
   return (
-    <html style={{ height: "100%" }}>
+    //data-color-mode="light"でエディタを白くできる
+    <html data-color-mode="light" style={{ height: "100%" }}>
       <body
         style={{
           margin: 0,
@@ -123,18 +135,22 @@ export default function RootLayout({
                         >
                           <Typography textAlign="center">Profile</Typography>
                         </MenuItem>
-                        <MenuItem onClick={handleCloseUserMenu}>
+                        <MenuItem
+                          onClick={handleCloseUserMenu}
+                          component="a"
+                          href="/publish"
+                        >
                           <Typography textAlign="center">
                             New Article
                           </Typography>
                         </MenuItem>
-                        <MenuItem onClick={handleCloseUserMenu}>
+                        <MenuItem onClick={handleLogoutMenu}>
                           <Typography textAlign="center">Logout</Typography>
                         </MenuItem>
                       </Menu>
                     </Box>
                   ) : (
-                    <Box sx={{ flexGrow: 0 }}>
+                    <Box sx={{ flexGrow: 0 }} onClick={handleLoginMenu}>
                       <Button
                         sx={{
                           border: "1px solid white",
