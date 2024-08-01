@@ -10,6 +10,10 @@ dev-build:
 dev-build--no-cache:
 	docker compose -f docker-compose-dev.yml build --no-cache
 
+.PHONY: up
+up:
+	docker compose -f docker-compose-dev.yml up
+
 .PHONY: dev-up-d
 dev-up-d:
 	docker compose -f docker-compose-dev.yml up -d
@@ -43,6 +47,10 @@ down:
 .PHONY: logs
 logs:
 	docker compose -f docker-compose-dev.yml logs -f
+
+.PHONY: stop
+stop:
+	docker compose -f docker-compose-dev.yml stop
 
 .PHONY: prod-logs
 prod-logs:
