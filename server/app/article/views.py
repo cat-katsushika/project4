@@ -1,7 +1,8 @@
 # from django.contrib.auth import logout as auth_logout
 # from django.shortcuts import redirect  # render
 from django_filters import rest_framework as filters
-from rest_framework import generics
+from rest_framework import generics, status, views
+from rest_framework.response import Response
 
 from .models import Article
 from .serializers import ArticleSerializer
@@ -24,3 +25,13 @@ class ArticleListView(generics.ListAPIView):
     serializer_class = ArticleSerializer
     filter_backends = [filters.DjangoFilterBackend]
     filterset_fields = "__all__"
+
+
+class ArticleDeleteView(views.APIView):
+    def delete(self, request, uuid, *args, **kwargs):
+        try:
+            article = Article.objects.get(id=uuid)
+            article.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except Article.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
